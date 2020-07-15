@@ -12,7 +12,7 @@ class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-light shadow-sm">
           <Link className="navbar-brand" to="/">
-            HB
+            Humming bird
           </Link>
           <button
             className="navbar-toggler"
