@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Pageheader from "./common/page-header";
 import Form from "./common/form";
 class Login extends Form {
