@@ -4,7 +4,7 @@ const Post = ({ post, handleDelete, isPostMine }) => {
   return (
     <div className="container postWrap">
       <div className="card">
-        <img className="card-img-top" src={post.imgUrl} alt="post" />
+        <img className="card-img-top" typeof="" src={post.img64} alt="post" />
         <div className="card-body">
           <h5 className="card-title">{post.title}</h5>
           <p className="card-text">{post.tags}</p>
@@ -23,7 +23,7 @@ const Post = ({ post, handleDelete, isPostMine }) => {
               </div>
             )}
 
-            {!isPostMine && <span>Add to fav</span>}
+            {!isPostMine && <i className="far fa-heart ml-2"></i>}
           </div>
         </div>
       </div>

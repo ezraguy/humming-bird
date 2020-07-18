@@ -54,7 +54,7 @@ router.post('/', auth, async (req, res) => {
     {
       title: req.body.title,
       tags: req.body.tags,
-      imgUrl: req.body.imgUrl,
+      img64: req.body.img64,
       user_id: req.user._id
     }
   );

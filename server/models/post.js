@@ -21,11 +21,11 @@ const postShcema = new mongoose.Schema({
   },
 
 
-  imgUrl: {
+  img64: {
     type: String,
     required: true,
     minlength: 11,
-    maxlength: 1024
+
   },
 
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
@@ -38,7 +38,7 @@ function validatePost(post) {
   const schema = Joi.object({
     title: Joi.string().min(2).max(255).required(),
     tags: Joi.string().min(2).max(1024).required(),
-    imgUrl: Joi.string().min(11).max(1024)
+    img64: Joi.string().min(11).required()
   });
 
   return schema.validate(post);

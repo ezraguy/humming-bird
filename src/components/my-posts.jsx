@@ -22,7 +22,7 @@ class MyPosts extends Component {
     myPosts = tempArr.data;
     setTimeout(() => {
       this.setState({ myPosts, isloding: false });
-    }, 100);
+    }, 2000);
   };
 
   handleDelete = async (id) => {
