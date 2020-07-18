@@ -1,11 +1,10 @@
 import React from "react";
 import PageHeader from "./common/page-header";
-import Joi, { read } from "joi-browser";
+import Joi from "joi-browser";
 import Form from "./common/form";
 import { Link } from "react-router-dom";
 import postService from "../services/postService";
 import { toast } from "react-toastify";
-import Dropzone from "./common/drop-zone";
 class AddPost extends Form {
   constructor(props) {
     super(props);
@@ -31,9 +30,10 @@ class AddPost extends Form {
     const file = e.currentTarget.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onloadend = async () => await (data["img64"] = reader.result);
-
-    this.setState({ data });
+    reader.onloadend = () => {
+      data["img64"] = reader.result;
+      this.setState({ data });
+    };
   };
   render() {
     return (
@@ -51,16 +51,19 @@ class AddPost extends Form {
               {this.renderInput("Title", "title")}
               {this.renderInput("Tags", "tags")}
               {/* {this.renderInput("Image Url", "imgUrl")} */}
-              {this.renderButton("Post", "submit", "btn btn-primary ")}
-              <Link to="/" className="btn btn-secondary ml-2">
-                cancel
-              </Link>
               <input
                 name="img64"
                 onChange={(e) => this.handleUpload(e)}
                 type="file"
                 id="inp"
               />
+              <br />
+              <div className="mt-2">
+                {this.renderButton("Post", "submit", "btn btn-primary ")}
+                <Link to="/" className="btn btn-secondary ml-2">
+                  cancel
+                </Link>
+              </div>
             </form>
           </div>
         </div>
