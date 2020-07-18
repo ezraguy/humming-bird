@@ -29,19 +29,19 @@ router.put('/:id', auth, async (req, res) => {
   const { error } = validatePost(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  let card = await Card.findOneAndUpdate({ _id: req.params.id, user_id: req.user._id }, req.body);
-  if (!card) return res.status(404).send('The card with the given ID was not found.');
+  let post = await Post.findOneAndUpdate({ _id: req.params.id, user_id: req.user._id }, req.body);
+  if (!post) return res.status(404).send('The post with the given ID was not found.');
 
-  card = await Card.findOne({ _id: req.params.id, user_id: req.user._id });
-  res.send(card);
+  post = await Post.findOne({ _id: req.params.id, user_id: req.user._id });
+  res.send(post);
 
 });
 
 router.get('/:id', auth, async (req, res) => {
 
-  const card = await Card.findOne({ _id: req.params.id, user_id: req.user_id });
-  if (!card) return res.status(404).send('The card with the given ID was not found.');
-  res.send(card);
+  const post = await Post.findOne({ _id: req.params.id, user_id: req.user._id });
+  if (!post) return res.status(404).send('The card with the given ID was not found.');
+  res.send(post);
 
 });
 

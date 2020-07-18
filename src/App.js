@@ -12,7 +12,7 @@ import SignUp from './components/sign-up';
 import Logout from './components/logout';
 import AddPost from './components/add-post';
 import myposts from './components/my-posts';
-
+import editPost from './components/edit-post'
 class App extends Component {
   state = {}
   componentDidMount = () => {
@@ -30,6 +30,8 @@ class App extends Component {
         </header>
         <main>
           <Switch>
+            <ProtectedRoute path='/my-posts/edit/:id' component={editPost} />
+
             <Route path="/login" component={Login} />
             <Route path="/sign-up" component={SignUp} />
             <Route path="/user/logout" component={Logout} />

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const Post = ({ post, handleDelete, isPostMine }) => {
   return (
     <div className="container postWrap">
@@ -7,16 +8,23 @@ const Post = ({ post, handleDelete, isPostMine }) => {
         <div className="card-body">
           <h5 className="card-title">{post.title}</h5>
           <p className="card-text">{post.tags}</p>
-          <p className="card-text">
+          <div className="card-text">
             <small className="text-muted">{post._id}</small>
 
             {isPostMine && (
-              <span
-                className="fas fa-trash-alt ml-3"
-                onClick={() => handleDelete(post._id)}
-              ></span>
+              <div>
+                <i
+                  className="fas fa-trash-alt ml-2 mr-2"
+                  onClick={() => handleDelete(post._id)}
+                ></i>
+                <Link to={`/my-posts/edit/${post._id}`}>
+                  <i className="far fa-edit"></i>
+                </Link>
+              </div>
             )}
-          </p>
+
+            {!isPostMine && <span>Add to fav</span>}
+          </div>
         </div>
       </div>
     </div>
