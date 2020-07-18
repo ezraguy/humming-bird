@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 class AddPost extends Form {
   constructor(props) {
     super(props);
-
     this.state = { data: { title: "", tags: "", img64: "" }, errors: {} };
   }
 
@@ -31,6 +30,7 @@ class AddPost extends Form {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
+      console.log(reader.result);
       data["img64"] = reader.result;
       this.setState({ data });
     };
