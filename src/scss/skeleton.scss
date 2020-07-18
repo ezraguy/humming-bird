@@ -1,0 +1,21 @@
+.skeletonText {
+  display: block !important;
+}
+.skeletonsWrap {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.skeletonMain {
+  width: 600px;
+  border-collapse: collapse;
+  border: 1px solid rgb(216, 215, 215);
+
+  line-height: 0;
+  padding: 0 !important;
+}
+
+.skelotonBody {
+  border-collapse: separate;
+}

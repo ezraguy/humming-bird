@@ -4,12 +4,15 @@ const _ = require('lodash');
 
 const postShcema = new mongoose.Schema({
 
+
+
   title: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 255
   },
+
   tags: {
     type: String,
     required: true,

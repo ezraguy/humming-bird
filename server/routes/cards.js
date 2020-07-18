@@ -18,9 +18,9 @@ router.get("/", auth, async (req, res) => {
 
 
 router.delete('/:id', auth, async (req, res) => {
-  const card = await Card.findOneAndRemove({ _id: req.params.id, user_id: req.user._id });
-  if (!card) return res.status(404).send('The card with the given ID was not found.');
-  res.send(card);
+  const post = await Post.findOneAndRemove({ _id: req.params.id, user_id: req.user._id });
+  if (!post) return res.status(404).send('The post with the given ID was not found.');
+  res.send(post);
 
 });
 
@@ -39,7 +39,7 @@ router.put('/:id', auth, async (req, res) => {
 
 router.get('/:id', auth, async (req, res) => {
 
-  const card = await Card.findOne({ _id: req.params.id, user_id: req.user._id });
+  const card = await Card.findOne({ _id: req.params.id, user_id: req.user_id });
   if (!card) return res.status(404).send('The card with the given ID was not found.');
   res.send(card);
 

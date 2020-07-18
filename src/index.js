@@ -8,6 +8,8 @@ import 'jquery/dist/jquery';
 import 'popper.js/dist/popper';
 import 'bootstrap/dist/js/bootstrap';
 import { BrowserRouter } from 'react-router-dom';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import 'sweetalert2/dist/sweetalert2';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

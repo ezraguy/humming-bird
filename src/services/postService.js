@@ -15,4 +15,8 @@ export function getPosts() {
 export function getAllPosts() {
     return http.get(`${apiUrl}/posts`)
 }
-export default { createPost, getPosts, getAllPosts };
+
+export function deletePost(id) {
+    return http.delete(`${apiUrl}/posts/${id}`)
+}
+export default { createPost, getPosts, getAllPosts, deletePost };
