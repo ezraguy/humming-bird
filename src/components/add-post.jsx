@@ -50,7 +50,6 @@ class AddPost extends Form {
             >
               {this.renderInput("Title", "title")}
               {this.renderInput("Tags", "tags")}
-              {/* {this.renderInput("Image Url", "imgUrl")} */}
               <input
                 name="img64"
                 onChange={(e) => this.handleUpload(e)}

@@ -11,7 +11,7 @@ class EditPost extends Form {
       _id: "",
       title: "",
       tags: "",
-      imgUrl: "",
+      img64: "",
     },
     errors: {},
   };
@@ -20,7 +20,7 @@ class EditPost extends Form {
     _id: Joi.string(),
     title: Joi.string().min(2).max(255).required(),
     tags: Joi.string().min(2).max(1024).required(),
-    imgUrl: Joi.string().min(11).max(1024).uri(),
+    img64: Joi.string().min(11),
   };
 
   componentDidMount = async () => {
@@ -29,9 +29,9 @@ class EditPost extends Form {
     //delting the the fileds that dont match the scheme (that we got from mongo)
     delete data.__v;
     delete data.user_id;
-
     this.setState({ data });
   };
+
   doSubmit = async () => {
     const data = { ...this.state.data };
     await postService.editPost(data);
@@ -54,11 +54,11 @@ class EditPost extends Form {
             >
               {this.renderInput("title", "title")}
               {this.renderInput("tags", "tags")}
-              {this.renderInput("Image Url", "imgUrl")}
               {this.renderButton("Update Post", "submit", "btn btn-primary ")}
-              <Link to="/my-posts" className="btn btn-secondary ml-2">
+              <Link to="/my-posts" className="btn btn-secondary ml-2 ">
                 cancel
               </Link>
+              <br />
             </form>
           </div>
         </div>

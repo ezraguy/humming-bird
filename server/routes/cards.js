@@ -12,7 +12,7 @@ router.get("/my-posts", auth, async (req, res) => {
 });
 
 router.get("/", auth, async (req, res) => {
-  const posts = await Post.find()
+  const posts = await Post.find();
   res.send(posts)
 })
 

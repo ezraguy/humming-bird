@@ -7,10 +7,14 @@ import _ from "lodash";
 class Home extends Component {
   state = { allPosts: [], isloading: true };
   posts = [];
+
   componentDidMount = async () => {
+    let allPosts = [];
     const tempArr = await postService.getAllPosts();
+    // the one true source
     this.posts = tempArr.data;
-    let allPosts = tempArr.data;
+    //the copy
+    allPosts = tempArr.data;
     allPosts = allPosts.reverse();
     this.setState({ allPosts });
     setTimeout(() => {
@@ -51,6 +55,9 @@ class Home extends Component {
             allPosts.map((post) => <Post key={post._id} post={post} />)}
           {isloading && <PostSkeleton />}
         </div>
+        {allPosts.length === 0 && (
+          <p className="display-4">Its Quite in here... too quite..</p>
+        )}
       </React.Fragment>
     );
   }
