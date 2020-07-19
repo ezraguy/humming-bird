@@ -9,7 +9,9 @@ const Post = ({ post, handleDelete, isPostMine }) => {
           <h5 className="card-title">{post.title}</h5>
           <p className="card-text">{post.tags}</p>
           <div className="card-text">
-            <small className="text-muted">{post._id}</small>
+            <small className="text-muted">
+              {post.user_id.name.toUpperCase()}
+            </small>
 
             {isPostMine && (
               <div>

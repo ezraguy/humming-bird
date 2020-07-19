@@ -4,8 +4,6 @@ const _ = require('lodash');
 
 const postShcema = new mongoose.Schema({
 
-
-
   title: {
     type: String,
     required: true,
@@ -28,7 +26,8 @@ const postShcema = new mongoose.Schema({
 
   },
 
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+
 });
 
 const Post = mongoose.model('Post', postShcema);

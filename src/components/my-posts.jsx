@@ -9,8 +9,6 @@ import Swal from "sweetalert2";
 import { swalConfig } from "../config.json";
 class MyPosts extends Component {
   state = {
-    data: { email: "", password: "" },
-    errors: {},
     myPosts: [],
     isloding: true,
     isPostMine: true,

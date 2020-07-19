@@ -2,17 +2,18 @@ const express = require('express');
 const _ = require('lodash');
 const { Post, validatePost } = require('../models/post');
 const auth = require('../middleware/auth');
+const { result } = require('lodash');
 const router = express.Router();
 
 
 router.get("/my-posts", auth, async (req, res) => {
   if (!req.user) return res.status(401).send("Access Denied");
-  const posts = await Post.find({ user_id: req.user._id });
+  const posts = await Post.find({ user_id: req.user._id }).populate('user_id', "name");;
   res.send(posts);
 });
 
 router.get("/", auth, async (req, res) => {
-  const posts = await Post.find();
+  const posts = await Post.find().populate('user_id', "name");
   res.send(posts)
 })
 
