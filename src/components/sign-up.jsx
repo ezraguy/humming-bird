@@ -4,6 +4,8 @@ import Form from "./common/form";
 import Joi from "joi-browser";
 import http from "../services/httpService";
 import { apiUrl } from "../config.json";
+import { toast } from "react-toastify";
+import userService from "../services/userService";
 
 class SignUp extends Form {
   state = { data: { name: "", email: "", password: "" }, errors: {} };
@@ -17,8 +19,11 @@ class SignUp extends Form {
     const data = { ...this.state.data };
     try {
       await http.post(`${apiUrl}/users`, data);
+      await userService.login(data.email, data.password);
+      window.location = "/";
+      toast.success("Welcome aboard!");
     } catch (err) {
-      console.log("oops...");
+      console.log(err);
     }
   };
   render() {

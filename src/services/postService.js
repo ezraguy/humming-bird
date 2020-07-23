@@ -2,6 +2,11 @@ import http from "../services/httpService";
 import { apiUrl } from "../config.json";
 
 
+
+export function addToFav(id) {
+    return http.post(`${apiUrl}/users/${id}`)
+}
+
 export function createPost(post) {
     return http.post(`${apiUrl}/posts`, post)
 }
@@ -29,4 +34,7 @@ export function editPost(post) {
     delete post._id;
     return http.put(`${apiUrl}/posts/${postId}`, post)
 }
-export default { createPost, getPosts, getAllPosts, deletePost, editPost, getOnePost };
+
+
+
+export default { createPost, getPosts, getAllPosts, deletePost, editPost, getOnePost, addToFav };

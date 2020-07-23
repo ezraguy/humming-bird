@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Post = ({ post, handleDelete, isPostMine }) => {
+const Post = ({ post, handleDelete, isPostMine, addToFav }) => {
   return (
     <div className="container postWrap">
       <div className="card">
@@ -25,7 +25,12 @@ const Post = ({ post, handleDelete, isPostMine }) => {
               </div>
             )}
 
-            {!isPostMine && <i className="far fa-heart ml-2"></i>}
+            {!isPostMine && (
+              <i
+                className="far fa-heart ml-2"
+                onClick={() => addToFav(post._id)}
+              ></i>
+            )}
           </div>
         </div>
       </div>

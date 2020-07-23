@@ -4,7 +4,7 @@ const { Post, validatePost } = require('../models/post');
 const auth = require('../middleware/auth');
 const { result } = require('lodash');
 const router = express.Router();
-
+const { User } = require('../models/user');
 
 router.get("/my-posts", auth, async (req, res) => {
   if (!req.user) return res.status(401).send("Access Denied");
@@ -24,6 +24,9 @@ router.delete('/:id', auth, async (req, res) => {
   res.send(post);
 
 });
+
+
+
 
 router.put('/:id', auth, async (req, res) => {
 

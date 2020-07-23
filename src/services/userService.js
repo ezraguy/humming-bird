@@ -27,6 +27,8 @@ export function getCurrentUser() {
 }
 
 
+
+
 export function logout() {
     localStorage.removeItem("token")
 }

@@ -4,6 +4,7 @@ import postService from "../services/postService";
 import Post from "./common/post";
 import PostSkeleton from "./common/skeleton";
 import _ from "lodash";
+import { toast } from "react-toastify";
 class Home extends Component {
   state = { allPosts: [], isloading: true };
   posts = [];
@@ -32,6 +33,15 @@ class Home extends Component {
     this.setState({ allPosts: filterdPosts });
   };
 
+  addToFav = async (id) => {
+    try {
+      await postService.addToFav(id);
+      toast.success("Post has been saved to favorites");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   render() {
     let { allPosts, isloading } = this.state;
 
@@ -52,7 +62,9 @@ class Home extends Component {
         <div className="row">
           {allPosts.length > 0 &&
             !isloading &&
-            allPosts.map((post) => <Post key={post._id} post={post} />)}
+            allPosts.map((post) => (
+              <Post key={post._id} post={post} addToFav={this.addToFav} />
+            ))}
           {isloading && <PostSkeleton />}
         </div>
         {allPosts.length === 0 && (

@@ -20,6 +20,14 @@ router.get('/cards', auth, async (req, res) => {
 
 });
 
+router.post('/:id', auth, async (req, res) => {
+  let user = await User.findById(req.user._id);
+  let post_id = req.params.id;
+  user.posts.push(post_id);
+  user.save()
+  res.send('Post has been saved to favorites')
+})
+
 router.patch('/cards', auth, async (req, res) => {
   const { error } = validateposts(req.body);
   if (error) res.status(400).send(error.details[0].message);
