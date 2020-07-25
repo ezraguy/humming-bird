@@ -8,9 +8,15 @@ const { User } = require('../models/user');
 
 router.get("/my-posts", auth, async (req, res) => {
   if (!req.user) return res.status(401).send("Access Denied");
-  const posts = await Post.find({ user_id: req.user._id }).populate('user_id', "name");;
+  const posts = await Post.find({ user_id: req.user._id }).populate('user_id', "name");
   res.send(posts);
 });
+
+// router.get("/my-favorites", auth, async (req, res) => {
+//   const posts = await Post.find({ user_id: req.user._id }).populate('user_id', "name");
+//   res.send(posts)
+// })
+
 
 router.get("/", auth, async (req, res) => {
   const posts = await Post.find().populate('user_id', "name");
@@ -29,7 +35,6 @@ router.delete('/:id', auth, async (req, res) => {
 
 
 router.put('/:id', auth, async (req, res) => {
-
   const { error } = validatePost(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -42,7 +47,6 @@ router.put('/:id', auth, async (req, res) => {
 });
 
 router.get('/:id', auth, async (req, res) => {
-
   const post = await Post.findOne({ _id: req.params.id, user_id: req.user._id });
   if (!post) return res.status(404).send('The card with the given ID was not found.');
   res.send(post);

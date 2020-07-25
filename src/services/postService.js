@@ -17,6 +17,11 @@ export function getPosts() {
 }
 
 
+export function getFavorites() {
+    return http.get(`${apiUrl}/users/my-favorites`)
+}
+
+
 export function getAllPosts() {
     return http.get(`${apiUrl}/posts`)
 }
@@ -37,4 +42,4 @@ export function editPost(post) {
 
 
 
-export default { createPost, getPosts, getAllPosts, deletePost, editPost, getOnePost, addToFav };
+export default { createPost, getPosts, getAllPosts, deletePost, editPost, getOnePost, addToFav, getFavorites };

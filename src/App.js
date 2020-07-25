@@ -13,6 +13,7 @@ import Logout from './components/logout';
 import AddPost from './components/add-post';
 import myposts from './components/my-posts';
 import editPost from './components/edit-post'
+import MyFavorites from './components/my-favorites';
 class App extends Component {
   state = {}
   componentDidMount = () => {
@@ -37,6 +38,7 @@ class App extends Component {
             <Route path="/user/logout" component={Logout} />
             <ProtectedRoute path='/add-post' component={AddPost} />
             <ProtectedRoute path='/my-posts' component={myposts} />
+            <ProtectedRoute path='/my-favorites' component={MyFavorites} />
             <ProtectedRoute path='/' component={Home} />
           </Switch>
         </main>

@@ -6,17 +6,16 @@ const { Post } = require('../models/post');
 const auth = require('../middleware/auth');
 const router = express.Router();
 
+const getPosts = async postsArr => {
+  const posts = await Post.find({ _id: { $in: postsArr } }).populate('user_id', "name");
+  return posts;
+};
 
-
-router.get('/cards', auth, async (req, res) => {
-
-  if (!req.query.numbers) res.status(400).send('Missing numbers data');
-
-  let data = {};
-  data.cards = req.query.numbers.split(",");
-
-  const cards = await getCards(data.cards);
-  res.send(cards);
+router.get('/my-favorites', auth, async (req, res) => {
+  let user = await User.findById(req.user._id);
+  const fav = user.posts;
+  const myFav = await getPosts(fav);
+  res.send(myFav);
 
 });
 
@@ -24,21 +23,11 @@ router.post('/:id', auth, async (req, res) => {
   let user = await User.findById(req.user._id);
   let post_id = req.params.id;
   user.posts.push(post_id);
-  user.save()
+  await user.save();
   res.send('Post has been saved to favorites')
-})
-
-router.patch('/cards', auth, async (req, res) => {
-  const { error } = validateposts(req.body);
-  if (error) res.status(400).send(error.details[0].message);
-  const cards = await getCards(req.body.cards);
-  if (cards.length != req.body.cards.length) res.status(400).send("Card numbers don't match");
-  let user = await User.findById(req.user._id);
-  user.cards = req.body.cards;
-  user = await user.save();
-  res.send(user);
-
 });
+
+
 
 router.get('/me', auth, async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');

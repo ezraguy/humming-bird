@@ -36,9 +36,13 @@ class Navbar extends Component {
                     </NavLink>
                   </li>
                   <li>
-                    {" "}
                     <NavLink className="nav-link" to="/add-post">
                       Add a post
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink className="nav-link" to="/my-favorites">
+                      My favorites
                     </NavLink>
                   </li>
                 </React.Fragment>
