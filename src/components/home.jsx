@@ -6,7 +6,7 @@ import PostSkeleton from "./common/skeleton";
 import _ from "lodash";
 import { toast } from "react-toastify";
 class Home extends Component {
-  state = { allPosts: [], isloading: true };
+  state = { allPosts: [], isloading: true, isPostMine: false };
   posts = [];
 
   componentDidMount = async () => {
@@ -43,7 +43,7 @@ class Home extends Component {
   };
 
   render() {
-    let { allPosts, isloading } = this.state;
+    let { allPosts, isloading, isPostMine } = this.state;
 
     return (
       <React.Fragment>
@@ -63,7 +63,12 @@ class Home extends Component {
           {allPosts.length > 0 &&
             !isloading &&
             allPosts.map((post) => (
-              <Post key={post._id} post={post} addToFav={this.addToFav} />
+              <Post
+                key={post._id}
+                post={post}
+                addToFav={this.addToFav}
+                isPostMine={isPostMine}
+              />
             ))}
           {isloading && <PostSkeleton />}
         </div>

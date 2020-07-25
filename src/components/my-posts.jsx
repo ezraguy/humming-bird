@@ -60,6 +60,11 @@ class MyPosts extends Component {
               />
             ))}
           {isloding && <PostSkeleton />}
+          {myPosts.length === 0 && (
+            <div className="container">
+              <p>you have no posts... yet</p>
+            </div>
+          )}
         </div>
       </React.Fragment>
     );

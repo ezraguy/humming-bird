@@ -13,7 +13,7 @@ const Post = ({ post, handleDelete, isPostMine, addToFav }) => {
               {post.user_id.name.toUpperCase()}
             </small>
 
-            {isPostMine && (
+            {isPostMine === true && (
               <div>
                 <i
                   className="fas fa-trash-alt ml-2 mr-2"
@@ -25,7 +25,7 @@ const Post = ({ post, handleDelete, isPostMine, addToFav }) => {
               </div>
             )}
 
-            {!isPostMine && (
+            {isPostMine === false && (
               <i
                 className="far fa-heart ml-2"
                 onClick={() => addToFav(post._id)}
